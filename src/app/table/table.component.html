@@ -1,0 +1,93 @@
+<div class="container">
+  <nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand">Danh sách sinh viên</a>
+    <!-- <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+    <div>
+      <button type="button" (click)="btnAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        ><i class="fa fa-plus"></i> Thêm</button
+      >
+    </div>
+  </nav>
+  <hr />
+  <div>
+    <div class="data-table d-flex justify-content-center">
+      <table id="example" class="table table-striped" style="width: 100%">
+        <thead>
+          <tr>
+            <th scope="col">Mã sinh viên</th>
+            <th scope="col">Họ</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Số điện thoại </th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of SV">
+            <td>{{ row.Id }}</td>
+            <td>{{ row.Firstname }}</td>
+            <td>{{ row.Lastname }}</td>
+            <td>{{ row.Dob }}</td>
+            <td>{{ row.Address }}</td>
+            <td>{{ row.sex }}</td>
+            <td>{{ row.Phone }}</td>
+            <td>
+              <button (click)="xoaSV(row)" class="btn btn-danger mx-2">Xóa</button>|
+              <button (click)="suaSV(row)" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Sửa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!-- modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">FORM NHẬP</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+            <div>
+              <label for="recipient-name" class="col-form-label">Họ</label>
+              <input type="text" formControlName="Firstname" class="form-control" id="recipient-name" />
+            </div>
+            <div>
+              <label for="recipient-name" class="col-form-label">Tên</label>
+              <input type="text" formControlName="Lastname" class="form-control" id="recipient-name" />
+            </div>
+            <div>
+              <label for="recipient-name" class="col-form-label">Ngày sinh</label>
+              <input type="text" formControlName="Dob" class="form-control" id="recipient-name" />
+            </div>
+            <div>
+              <label for="recipient-name" class="col-form-label">Địa chỉ</label>
+              <input type="text" formControlName="Address" class="form-control" id="recipient-name" />
+            </div>
+            <div>
+              <label for="recipient-name" class="col-form-label">Giới tính</label>
+              <input type="text" formControlName="sex" class="form-control" id="recipient-name" />
+            </div>
+            <div>
+              <label for="recipient-name" class="col-form-label">Số điện thoại </label>
+              <input type="text" formControlName="Phone" class="form-control" id="recipient-name" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" id="btn-cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button *ngIf="showAdd" type="button" class="btn btn-primary" (click)="themSV()">Save</button>
+          <button *ngIf="showUpdate" type="button" class="btn btn-primary" (click)="updateSV()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
